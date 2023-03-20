@@ -11,14 +11,29 @@ class ProductManager {
     let id_producto = this.getProductos().length;
 
     let producto = {
-      title: nombre,
-      description: descripcion,
-      price: precio,
-      thumbnail: imagen,
-      code: codigo,
+      nombre: nombre,
+      descripcion: descripcion,
+      precio: precio,
+      imagen: imagen,
+      codigo: codigo,
       stock: stock,
       id: ++id_producto,
     };
+
+    let validarNombre = (producto.nombre == null || producto.nombre == '')
+    let validarDescripcion = (producto.descripcion == null || producto.descripcion == '')
+    let validarPrecio = (producto.precio == null || producto.precio == '')
+    let validarStock = (producto.stock == null || producto.stock == '')
+    let validarCodigo = (producto.codigo == null || producto.codigo == '')
+
+    if(validarNombre || validarDescripcion || validarPrecio || validarStock || validarCodigo){
+      return console.log('Por favor complete todos los campos');
+    }
+    else{
+      this.productos.push(producto)
+      console.log('El producto se agrego de forma correcta');
+
+    }
 
     this.productos.push(producto);
     return this.productos;
@@ -43,4 +58,5 @@ productos.agregarProducto("Bicicleta para niños", "Tomaselli, 1 año de uso", 8
 productos.agregarProducto("Silla bebé para auto", "De 3 a 15kg! como nueva", 12500,"", 3, 1);
 
 console.log(productos.getProductsById(2))
+console.log(productos);
 
