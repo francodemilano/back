@@ -58,5 +58,4 @@ productos.agregarProducto("Bicicleta para niños", "Tomaselli, 1 año de uso", 8
 productos.agregarProducto("Silla bebé para auto", "De 3 a 15kg! como nueva", 12500,"", 3, 1);
 
 console.log(productos.getProductsById(2))
-console.log(productos);
-
+console.log(producto);
