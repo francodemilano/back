@@ -1,0 +1,46 @@
+class ProductManager {
+  constructor() {
+    this.productos = [];
+  }
+
+  getProductos() {
+    return this.productos;
+  }
+
+  agregarProducto(nombre, descripcion, precio, imagen, codigo, stock) {
+    let id_producto = this.getProductos().length;
+
+    let producto = {
+      title: nombre,
+      description: descripcion,
+      price: precio,
+      thumbnail: imagen,
+      code: codigo,
+      stock: stock,
+      id: ++id_producto,
+    };
+
+    this.productos.push(producto);
+    return this.productos;
+  }
+
+  getProductsById(id_producto) {
+    let producto = this.productos.find(
+      (producto) => producto.id === id_producto
+    );
+
+    if (producto) {
+      return producto;
+    } else {
+      return console.log("not found");
+    }
+  }
+}
+
+const productos = new ProductManager();
+productos.agregarProducto("Lavarropa Automatico Whirpool", "10 años de uso, funciona todo", 15000,"", 1, 2);
+productos.agregarProducto("Bicicleta para niños", "Tomaselli, 1 año de uso", 8500,"", 2, 3);
+productos.agregarProducto("Silla bebé para auto", "De 3 a 15kg! como nueva", 12500,"", 3, 1);
+
+console.log(productos.getProductsById(2))
+
