@@ -1,4 +1,4 @@
-import managerUsuarios from "./Manager/ManagerUsuarios";
+import ManagerUsuarios from "./manager/managerUsuarios";
 const Manager = new ManagerUsuarios();
 
 const env = async () =>{
@@ -10,10 +10,10 @@ const env = async () =>{
         curso: "Backend"
     }
 
-    let result = await manager.crearUsuario(user);
+    let result = await Manager.crearUsuario(users);
     console.log(result);
 
-    let usuarios = await manager.consultarUsuarios()
+    let usuarios = await Manager.consultarUsuarios()
 
     console.log(usuarios);
 
