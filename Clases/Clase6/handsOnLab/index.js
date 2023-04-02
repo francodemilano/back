@@ -17,6 +17,9 @@ const env = async () =>{
 
     console.log(users);
 
+
     await userManager.validarUsuario ('bidabehere', '123456')
     await userManager.validarUsuario('bidabehere','contraseña')
 }
+
+env ()

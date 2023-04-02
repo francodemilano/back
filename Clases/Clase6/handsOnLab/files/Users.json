@@ -1,0 +1,23 @@
+[
+	{
+		"nombre": "Juan",
+		"apellido": "Bidabehere",
+		"usuario": "bidabehere",
+		"contrasena": "aded0e490bc5a3c981d6103bd891edce6d5be640b3733da874f25ae2d19ca256",
+		"salt": "GOmK1Lg/MbIN+SPGkXa/FrCg8BFJQG9TM9LVzJME1KUum81l43X+CBlf4FMuRjLWTz2/Qwhspv6GBA1jE+QY5aohsinGuI5Eh+KL4xZXZlUiatvY4+g5BP5OgnFQSVlVeBCVlinimdrJTAjPH1xqXcfXA7M0zFYHqn1VLJyvJyk="
+	},
+	{
+		"nombre": "Juan",
+		"apellido": "Bidabehere",
+		"usuario": "bidabehere",
+		"contrasena": "9739846f5d0ec94b14fe10f995ad2e5b6c1bef1b841d14e5bf3927d48e055c57",
+		"salt": "+P7mjzOQ0/3YQaHyNImc4NflgIgwIldB3qpW6/SR23SXZGvwgLNBA4nzh4kq4RJK7MwAUVJ2fzb+rnzKFqOacdG6GQ+36PO4a8lceoULOgM7XnG6hJ4jSzPOuQ2X77to4X6hUnxzRPyhEBEajmXVEr6F8U2XlOp4F/jeFVLh5Oc="
+	},
+	{
+		"nombre": "Juan",
+		"apellido": "Bidabehere",
+		"usuario": "bidabehere",
+		"contrasena": "bd883e03700fdfd5cb7f83d52c5779439e6610c432fa9fccb5e748cb4128bf2d",
+		"salt": "xfCNhRFuMVS92AR+tjO3Wofkn5fjWE+mrQOXbp2QBWTgleKl+VqMQoWnf01Ilf+wX8IbMLELHkQLnzTv1IjRNZDpVGhExzFP8KlofNidEAZHgk+S9kzmFaQEUoz+vK/AxsNVKF44vf3JdBU/4o6ySVQW/LVuDhmzF7JbhzULj1o="
+	}
+]
