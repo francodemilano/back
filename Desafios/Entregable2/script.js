@@ -1,4 +1,4 @@
-import ProductManager from "./ProductManager.js"
+import ProductManager from "./ProductManager/ProductManager.js"
 
 const productManager = new ProductManager("./products.txt")
 

@@ -1,1 +1,1 @@
-[{"id":2,"title":"Bicicleta para niños","description":"Tomaselli, 1 año de uso","price":9700,"thumbnail":null,"code":"2","stock":1},{"id":2,"title":"Lavarropa Automatico Whirpool","description":"10 años de uso, funciona todo","price":5000,"thumbnail":null,"code":"1","stock":2},{"id":2,"title":"Bicicleta para niños","description":"Tomaselli, 1 año de uso","price":9700,"thumbnail":null,"code":"2","stock":1}]
+[]

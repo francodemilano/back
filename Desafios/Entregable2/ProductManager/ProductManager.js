@@ -1,5 +1,6 @@
 
 import fs from 'fs'
+import crypto, { createHmac } from 'crypto';
 
 
 export default class ProductManager {
