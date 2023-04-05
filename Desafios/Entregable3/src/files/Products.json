@@ -1,0 +1,38 @@
+[ 
+	{      
+        "id": 1,
+	"title": "Lavarropa Automatico Whirpool",
+        "description": "10 años de uso, funciona todo",
+        "price": 5000,
+        "thumbnail": null, 
+        "code": 1,
+        "stock": 2
+	},
+	{ 
+        "id": 2,
+        "title": "Bicicleta para niños",
+        "description": "Tomaselli, 1 año de uso",
+        "price": 8500,
+        "thumbnail": null,
+        "code": 2,
+        "stock": 3
+	},
+        { 
+        "id": 3,
+        "title": "TV Led 32p",
+        "description": "BGH, No smart",
+        "price": 18700,
+        "thumbnail": null,
+        "code": 3,
+        "stock": 1
+        },
+        { 
+        "id": 4,
+        "title": "Escritorio",
+        "description": "Con cajonera doble, buena calidad, ideal estudiante",
+        "price": 4500,
+        "thumbnail": null,
+        "code": 4,
+        "stock": 1
+        }
+]

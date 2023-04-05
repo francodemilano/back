@@ -9,8 +9,8 @@ const app = express();
 app.use(express.urlencoded({extended:true}))
 
 app.listen(PORT, ()=>{
-    console.log(`Servidor funcionando en el puerto ${ PORT }`)
-    
+    //console.log(`Servidor funcionando en el puerto ${ PORT }`)
+    console.log('Servidor funcionando en el puerto: ' + PORT)
 })
 
 
