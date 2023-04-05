@@ -1,7 +1,7 @@
 import express from 'express'
 import DataManager from './Managers/dataManager.js'
 
-const PORT = 8081;
+const PORT = 8080;
 
 const dataManager = new DataManager()
 const app = express();
