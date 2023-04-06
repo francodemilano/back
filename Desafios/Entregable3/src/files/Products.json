@@ -34,5 +34,14 @@
         "thumbnail": null,
         "code": 4,
         "stock": 1
+        },
+        { 
+        "id": 5,
+        "title": "Lamparas",
+        "description": "Decorativas, varios colores y tamaños",
+        "price": 500,
+        "thumbnail": null,
+        "code": 5,
+        "stock": 12
         }
 ]
