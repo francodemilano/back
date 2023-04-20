@@ -1,13 +1,13 @@
-<div class="container">
-    <h1>Real Time Products</h1>
-    <div id="products-list">
+<div>
+    <h1>Productos online</h1>
+    <div>
         {{#each products}}
-        <div id={{this.id}} class="products-item">
+        <div id={{this.id}}>
             <h2>{{this.title}}</h2>
             <p>{{this.description}}</p>
             <span>{{this.price}}</span>
             {{#each this.thumbnails}}
-            <img class="thumbnail" src={{this}} alt="foto" srcset="">
+            <img src={{this}} alt="foto" srcset="">
             {{/each}}
             <button class='delete-button btn btn-danger' onclick="deleteProduct({{this.id}})" id={{this.id}}> -
             </button>
@@ -17,7 +17,7 @@
     <hr>
 
     <h2>Create a product</h2>
-    <form id="post-product" action="/api/products" method="post">
+    <form  action="/api/products" method="post">
         <label>Nombre</label>
         <input id="title-product" type="text" name="title">
         <label>Descripcion</label>

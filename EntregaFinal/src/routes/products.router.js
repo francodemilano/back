@@ -1,6 +1,7 @@
 import { Router } from "express";
 import fs from "fs"
 import { uploaderThumbnails } from "../utils.js";
+import { socketServer } from "../app.js";
 
 const router = Router();
 
@@ -41,11 +42,10 @@ router.get('/:pid', async (req, res) => {
     })
 })
 
-router.post('/', uploaderThumbnails.array('thumbnails'), async (req, res) => {
+router.post('/', async (req, res) => {
     let products = JSON.parse(await fs.promises.readFile('./src/files/products.json', 'utf-8'))
     let product = req.body
     let idProduct = products[products.length - 1].id + 1
-
 
     if (!product.title || !product.description || !product.code || !product.price || !product.stock || !product.category) {
         return res.status(400).send({
@@ -61,21 +61,10 @@ router.post('/', uploaderThumbnails.array('thumbnails'), async (req, res) => {
         error: `Code product '${product.code}' already created.`
     })
 
-
-    req.files.thumbnails = []
-    for (let index = 0; index < req.files.length; index++) {
-        req.files.thumbnails.push("http://localhost:8080/images/"+ req.files[index].filename)
-    }
-
-
-    products.push({ id: idProduct, thumbnails: [...req.files.thumbnails], status: true, ...product })
-
+    products.push({ id: idProduct, status: true, ...product })
     await fs.promises.writeFile('./src/files/products.json', JSON.stringify(products, null, '\t'))
-
-    res.send({
-        status: 'Ok',
-        product: { id: idProduct, thumbnails: [...req.files.thumbnails], status: true, ...product }
-    })
+    socketServer.emit('updateProducts', { products })
+    res.redirect('../../realtimeproducts')
 })
 
 router.put('/:pid', async (req, res) => {
@@ -104,8 +93,8 @@ router.put('/:pid', async (req, res) => {
     })
 })
 
-
 router.delete('/:pid', async (req, res) => {
+    console.log("entra aca")
     let idParams = req.params.pid
     let products = JSON.parse(await fs.promises.readFile('./src/files/products.json', 'utf-8'))
     let product = products.find(product => product.id === parseInt(idParams))
@@ -117,13 +106,9 @@ router.delete('/:pid', async (req, res) => {
 
 
     products.splice(products.indexOf(product), 1)
-
     await fs.promises.writeFile('./src/files/products.json', JSON.stringify(products, null, '\t'))
-
-    res.send({
-        status: "Ok",
-        productDeleted: product
-    })
+    socketServer.emit('updateProducts', { products })
+    res.redirect('../../realtimeproducts')
 })
 
 export default router;
