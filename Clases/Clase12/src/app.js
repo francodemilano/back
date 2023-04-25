@@ -10,21 +10,17 @@ const server = app.listen(PORT, ()=>{
     console.log('Servidor funcionando en el puerto: ' + PORT);
 })
 
- //Vistas
-
+//Vistas
 app.engine('handlebars', handlebars.engine());
 app.set('views', __dirname + '/views');
 app.set('view engine', 'handlebars');
 
 //Servicio
-
 app.use(express.json());
 app.use(express.static(__dirname + '/public'))
 
 //Rutas
-
 //Vistas
-
 app.use('/', viewRouter)
 
 //Chat socket.io
@@ -37,11 +33,11 @@ io.on('connection', Socket =>{
     console.log('Socket connected');
 
     Socket.on('message', data=>{
-
         messages.push(data);
-
         io.emit('messageLogs', messages)
-
+    })
+    Socket.on('authenticated', data =>{
+        Socket.broadcast.emit('newUserConnected', data)
     })
 
 })
