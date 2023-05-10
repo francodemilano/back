@@ -1,26 +1,41 @@
 const socket = io()
+let log = document.getElementById('productList')
 
-const productList = document.getElementById("products-list")
+const addProd = document.getElementById("addProd")
+addProd.addEventListener("click", event =>{
+    if(event){
+        const title = document.getElementById('title').value
+        const description = document.getElementById('description').value
+        const price = document.getElementById('price').value
+        const img = document.getElementById('img').value
+        const code = document.getElementById('code').value
+        const stock = document.getElementById('stock').value
+        const newProduct = {title,description,price,img,code,stock}
+        socket.emit('product', newProduct);
+    }
+});
 
-function deleteProduct(id) {
-    fetch(`/api/products/${id}`, {
-        method: 'DELETE'
+const deletProd = document.getElementById("deletProd")
+deletProd.addEventListener("click", event =>{
+    if(event){
+        const pid = document.getElementById('pid').value
+        socket.emit('deleteProduct', pid) // volvia a llamar a product aca.
+    }
+});
+
+socket.on('productList', products =>{
+    let productListHTML = "";
+    products.forEach(producto => {
+        productListHTML +=  `<p>==========</p>
+        ${producto.pid}<br/>
+        ${producto.title}<br/>
+        ${producto.description}<br/>
+        ${producto.price}<br/>
+        ${producto.img}<br/>
+        ${producto.status}<br/>
+        ${producto.code}<br/>
+        ${producto.stock}<br/>`
     })
-}
+    log.innerHTML = productListHTML;
 
-socket.on('updateProducts', ({ products }) => {
-    let productsInHtml = ""
-    products.forEach(element => {
-        productsInHtml += `
-                <div>
-                    <h2>${element.title}</h2>
-                    <p>${element.description}</p>
-                    <span>${element.price}</span>
-                    <div>
-                    <button class='delete-button btn btn-danger' onclick="deleteProduct({{this.id}})" id={{this.id}}> -
-                    </button>
-                    </div>
-                </div>`
-    });
-    productList.innerHTML = productsInHtml
 })
