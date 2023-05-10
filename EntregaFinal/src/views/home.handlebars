@@ -1,12 +1,20 @@
-<ul class="products-list">
+<div class="container">
+    <h1 class="title">NUESTROS PRODUCTOS</h1>
+  <div class="gallery">
     {{#each products}}
-        <div class="products-item">
-            <h2>{{this.title}}</h2>
-            <p>{{this.description}}</p>
-            <span>{{this.price}}</span>
-            {{#each this.thumbnails}}
-                <img class="thumbnail" src={{this}} alt="foto" srcset="">
-            {{/each}}
-        </div>
+      <div class="product">
+        <h2>{{this.title}}</h2>
+          <img src="{{this.img}}" alt="{{this.title}}">
+        <p>{{this.description}}</p>
+        <p>Price: {{this.price}}</p>
+        <p>Stock: {{this.stock}}</p>
+      </div>
     {{/each}}
-</ul>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.6/handlebars.min.js"></script>
+
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/home.js"></script>
