@@ -3,45 +3,51 @@ import handlebars from "express-handlebars";
 import { Server } from "socket.io";
 import mongoose from "mongoose";
 import __dirname from "./utils.js";
-import productsRouter from "./routes/products.router.js"
-import cartsRouter from "./routes/carts.router.js";
-import viewsRouter from "./routes/views.router.js"
-import fs from 'fs'
+import viewsRouter from "./router/views.routes.js";
+import chatRouter from "./router/chat.routes.js"
+import cartRouter from "./router/cart.routes.js"
+import productRouter from "./router/product.routes.js"
+import messagesModel from "./Dao/models/message.model.js";
+/* import productModel from "./Dao/models/products.model.js"; */
 
 
+const PORT = process.env.PORT || 8080;
 const app = express();
-const PORT = 8080;
-
-
-const appServer = app.listen(PORT, () => {
-    console.log(`Server started on ${PORT} ports.`)
+const server = app.listen(PORT, ()=>{
+    console.log('Servidor funcionando en el puerto: '+PORT);
 })
 
 const MONGO = "mongodb+srv://damilanofranco:Fran2023$@cluster0.iyqxzj8.mongodb.net/?retryWrites=true&w=majority"
 const connect = mongoose.connect(MONGO);
 
 
-export const socketServer = new Server(appServer)
-
-socketServer.on('connection', (socket) => {
-    console.log('Usuario encontrado', socket.id)
-
-    socket.on('disconnect', () => {
-        console.log('Usuario desconectado')
-    })
-
-})
-app.engine('handlebars', handlebars.engine())
-app.set('views', __dirname + '/views')
-app.set('view engine', 'handlebars')
-
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(express.static(__dirname + '/public'))
-
-app.use('/api/products', productsRouter)
-app.use('/api/carts', cartsRouter)
+app.use(express.urlencoded({extended:true}));
+app.use(express.static(__dirname+'/public'));
+app.engine('handlebars', handlebars.engine());
+app.set('views', __dirname + '/views');
+app.set('view engine', 'handlebars');
 app.use('/', viewsRouter)
-app.use('/api/chat', chatRouter)
 app.use('/realTimeProducts', viewsRouter)
+app.use('/api/chat', chatRouter)
+app.use('/api/products/', productRouter);
+app.use('/api/carts/', cartRouter);
 
+const io = new Server(server)
+const messages = []
+
+io.on('connection', socket => {
+    console.log('socket connected')
+  
+    socket.emit('messageLogs', messages)
+  
+    socket.on('message', async data => {
+        messages.push(data)  
+        io.emit('messageLogs', messages)
+        await messagesModel.create({ user: data.user, message: data.message })
+      });
+  
+    socket.on('authenticated', data => {
+      socket.broadcast.emit('newUserConnected', data);
+    });
+  });
