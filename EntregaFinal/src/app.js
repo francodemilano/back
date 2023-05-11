@@ -8,7 +8,7 @@ import chatRouter from "./router/chat.routes.js"
 import cartRouter from "./router/cart.routes.js"
 import productRouter from "./router/product.routes.js"
 import messagesModel from "./Dao/models/message.model.js";
-/* import productModel from "./Dao/models/products.model.js"; */
+import productModel from "./Dao/models/products.model.js";
 
 
 const PORT = process.env.PORT || 8080;
