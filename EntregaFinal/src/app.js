@@ -2,24 +2,25 @@ import express from "express";
 import handlebars from "express-handlebars";
 import { Server } from "socket.io";
 import mongoose from "mongoose";
+
 import __dirname from "./utils.js";
-import viewsRouter from "./router/views.routes.js";
+import productRouter from "./router/product.routes.js"
 import chatRouter from "./router/chat.routes.js"
 import cartRouter from "./router/cart.routes.js"
-import productRouter from "./router/product.routes.js"
+import viewsRouter from "./router/views.routes.js";
 import messagesModel from "./Dao/models/message.model.js";
 import productModel from "./Dao/models/products.model.js";
 
 
 const PORT = process.env.PORT || 8080;
-const app = express();
+
 const server = app.listen(PORT, ()=>{
     console.log('Servidor funcionando en el puerto: '+PORT);
 })
 
 const MONGO = "mongodb+srv://damilanofranco:Fran2023$@cluster0.iyqxzj8.mongodb.net/?retryWrites=true&w=majority"
 const connect = mongoose.connect(MONGO);
-
+const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
