@@ -7,7 +7,7 @@ import viewsRouter from "./router/views.routes.js";
 import chatRouter from "./router/chat.routes.js"
 import cartRouter from "./router/carts.routes.js"
 import productRouter from "./router/product.routes.js"
-//import messagesModel from "./Dao/models/message.model.js";
+import messagesModel from "./Dao/models/message.model.js";
 
 const PORT = process.env.PORT || 8080;
 const app = express();
@@ -20,14 +20,10 @@ const connect = mongoose.connect(MONGO);
 
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
-// Estaticos
 app.use(express.static(__dirname+'/public'));
-// Handlebars
 app.engine('handlebars', handlebars.engine());
 app.set('views', __dirname + '/views');
 app.set('view engine', 'handlebars');
-
-// routes
 app.use('/', viewsRouter)
 app.use('/api/chat', chatRouter)
 app.use('/api/products/', productRouter);
@@ -42,11 +38,9 @@ io.on('connection', socket => {
     socket.emit('messageLogs', messages)
   
     socket.on('message', async data => {
-        // Pusheamos un mensaje a un arrays para mostrarlo por handlebars. 
+
         messages.push(data)  
         io.emit('messageLogs', messages)
-        // Crear un nuevo documento en la base de datos
-       // await messagesModel.create({ user: data.user, message: data.message })
       });
   
     socket.on('authenticated', data => {

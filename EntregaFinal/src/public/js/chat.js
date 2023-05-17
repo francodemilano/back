@@ -9,7 +9,7 @@ chatbox.addEventListener('keyup', evt =>{
         }
     }
 });
-// Ventana modal que solicita el correo electrónico del usuario
+
 Swal.fire({
     title: "Su Email por favor",
     input: "text",
@@ -25,7 +25,7 @@ Swal.fire({
     socket.emit('authenticated', usuario);
   });
 
-  // Evento que se ejecuta al presionar Enter en el campo de chat
+
   chatbox.addEventListener('keyup', evt => {
     if (evt.key === "Enter") {
       if (chatbox.value.trim().length > 0) {
@@ -35,7 +35,6 @@ Swal.fire({
     }
   });
 
-  // Evento que muestra los mensajes en el historial de chat
   socket.on('messageLogs', data => {
         if (!user) return;
     let log = document.getElementById('messageLogs');
@@ -48,7 +47,7 @@ Swal.fire({
     log.innerHTML = messages;
   });
 
-  // Evento que muestra un mensaje de bienvenida cuando un usuario nuevo se conecta
+
   socket.on('newUserConnected', data => {
     if (!user) return;
     Swal.fire({
