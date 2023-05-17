@@ -15,7 +15,7 @@ const server = app.listen(PORT, ()=>{
     console.log('Servidor funcionando en el puerto: '+PORT);
 })
 
-const MONGO = "mongodb+srv://freddymdq:federico@cluster0.wm7ahcr.mongodb.net/ecommerce?retryWrites=true&w=majority"
+const MONGO = 'mongodb+srv://damilanofranco:Fran2023$@cluster0.iyqxzj8.mongodb.net/?retryWrites=true&w=majority'
 const connect = mongoose.connect(MONGO);
 
 app.use(express.json());
