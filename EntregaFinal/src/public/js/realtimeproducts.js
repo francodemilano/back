@@ -19,7 +19,7 @@ const deletProd = document.getElementById("deletProd")
 deletProd.addEventListener("click", event =>{
     if(event){
         const pid = document.getElementById('pid').value
-        socket.emit('deleteProduct', pid) // volvia a llamar a product aca.
+        socket.emit('deleteProduct', pid) 
     }
 });
 
