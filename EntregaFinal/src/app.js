@@ -41,6 +41,7 @@ io.on('connection', socket => {
 
         messages.push(data)  
         io.emit('messageLogs', messages)
+        await messagesModel.create({ user: data.user, message: data.message })
       });
   
     socket.on('authenticated', data => {
