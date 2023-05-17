@@ -1,62 +1,76 @@
 const socket = io();
-    let user;
+
+let user;
+
+const send = document.getElementById('send');
 const chatbox = document.getElementById('chatbox');
-chatbox.addEventListener('keyup', evt =>{
-    if(evt.key === "Enter"){
-        if(chatbox.value.trim().length>0){
-            socket.emit('message', {user:user, message:chatbox.value.trim()})
-            chatbox.value = "";
-        }
-    }
-});
+const messageLog = document.getElementById('messageLog');
+
 
 Swal.fire({
-    title: "Su Email por favor",
+    title: "Tenés que identificarte",
     input: "text",
     inputValidator: (value) => {
-      return !value && "Es necesario un Email para ingresar"
+        return !value && "Necesita escribir un nombre de usuario para iniciar el chat"; 
     },
+    allowOutsideClick: false,
     toast: true
-  }).then(result => {
+})
+.then(result => {
+
     user = result.value;
-    let usuario = {
-      user: user,
-    }
-    socket.emit('authenticated', usuario);
-  });
 
+    socket.emit('authenticated', user);
 
-  chatbox.addEventListener('keyup', evt => {
-    if (evt.key === "Enter") {
-      if (chatbox.value.trim().length > 0) {
-        socket.emit('message', { user: user, message: chatbox.value.trim() })
+});
+
+send.addEventListener('click', () => {
+    
+    if (chatbox.value.trim().length > 0){
+        socket.emit('message', {user: user, message: chatbox.value.trim()});
         chatbox.value = "";
-      }
-    }
-  });
+    };
 
+});
 
-  socket.on('messageLogs', data => {
-        if (!user) return;
-    let log = document.getElementById('messageLogs');
-    let messages = "";
-    if (Array.isArray(data)) {
-      data.forEach(message => {
-        messages += `${message.user} : ${message.message} <br/>  `
-      });
-    }
-    log.innerHTML = messages;
-  });
+chatbox.addEventListener('keyup', (event) => {
+    
+    if (event.key === "Enter"){
+        if (chatbox.value.trim().length > 0){
+            socket.emit('message', {user: user, message: chatbox.value.trim()});
+            chatbox.value = "";
+        };
+    };
 
+});
 
-  socket.on('newUserConnected', data => {
+socket.on('messageLog', (messageHistory) => {
+
     if (!user) return;
-    Swal.fire({
-      toast: true,
-      position: 'top-end',
-      showConfirmButton: false,
-      timer: 3000,
-      title: `${data.user} ingreso a la sala`,
-      icon: "success"
+
+    let messages = "";
+
+    messageHistory.forEach(message => {
+
+        messages += `${message.user} dice: ${message.message}<br>`;
+
     });
-  });
+
+    messageLog.innerHTML = messages;
+
+});
+
+socket.on('newUserConnected', (data) => {
+    
+    if (!user) return;
+
+    Swal.fire({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        title: `${data} se ha unido al chat`,
+        icon: 'Success'
+    });
+
+});

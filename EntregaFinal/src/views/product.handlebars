@@ -1,0 +1,19 @@
+
+<div class="container">
+    <h1 class="title">VISTA UNICA PRODUCTO</h1>
+    <div class="formulario"></div>
+    {{#if message}}
+  <div class="alert alert-warning">{{message}}</div>
+    {{/if}}
+  <div class="gallery">
+      <div class="product">
+        <h2>{{this.product.title}}</h2>
+          <img src="{{this.product.img}}" alt="{{this.product.title}}">
+        <p>{{this.product.description}}</p>
+        <p>Category: {{this.product.category}}</p>
+        <p>Price: {{this.product.price}}</p>
+        <p>Stock: {{this.product.stock}}</p>
+        <p>Disponibilidad: {{this.product.status}}</p>
+        <button>Agregar al carrito</button>
+      </div>
+  </div>

@@ -1,0 +1,22 @@
+<div class="container">
+    <br>
+    <h1 class="title">Orden de Compra</h1>
+    <br>
+    <br>
+  <div class="gallery">
+    {{#each cart.products}}
+      <div class="product">
+        <h2>{{this.product.title}}</h2>
+        <p>Unidades: {{this.quantity}}</p>
+          <img src="{{this.product.img}}" alt="{{this.title}}">
+        <p>{{this.product.description}}</p>
+        <p class="parra">Price ${{this.product.price}}</p>
+        <p>{{this.product.category}}</p>
+        <p class="parra">Stock {{this.product.stock}}</p>
+      
+      </div>
+    {{/each}}
+  </div>
+  <br>
+    <h2>Total: ${{total}}</h2>
+  </div>

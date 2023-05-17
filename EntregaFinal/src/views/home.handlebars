@@ -1,20 +1,26 @@
 <div class="container">
-    <h1 class="title">NUESTROS PRODUCTOS</h1>
+    <h1 class="title">TODOS PRODUCTOS</h1>
+    <div class="formulario">
+      <form action="/products" method="get">
+        <input  class="input" type="text" name="query" placeholder="Buscar producto...">
+        <button type="submit">Buscar</button>
+      </form>
+    </div>
+    {{#if message}}
+  <div class="alert alert-warning">{{message}}</div>
+    {{/if}}
   <div class="gallery">
     {{#each products}}
       <div class="product">
         <h2>{{this.title}}</h2>
           <img src="{{this.img}}" alt="{{this.title}}">
         <p>{{this.description}}</p>
-        <p>Price: {{this.price}}</p>
+        <p>${{this.price}}</p>
         <p>Stock: {{this.stock}}</p>
+        <button>Agregar al carrito</button>
       </div>
     {{/each}}
   </div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.6/handlebars.min.js"></script>
 
-
-<script src="/socket.io/socket.io.js"></script>
-<script src="/js/home.js"></script>

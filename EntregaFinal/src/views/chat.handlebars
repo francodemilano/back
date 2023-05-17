@@ -1,19 +1,16 @@
-<main>
-    <h1>Chat</h1>
-    <div>
-        <p id="messageLog">
-            {{#each messages}}
-                {{user}} dice: {{message}}<br>
-            {{/each}}
-        </p>
-    </div>
-    <div id="chat-controls">
-        <input id="chatbox">
-        <button id="send">Enviar</button>
-    </div>
-</main>
+
+<div >
+    <h2 >CHAT</h2>
+  <div ></div>
+    <input id="chatbox">
+        <div>
+            <h4 id="messageLogs"></h4>
+         </div>
+</div>
+
 
 
 <script src="/socket.io/socket.io.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.6/handlebars.min.js"></script>
 <script src="/js/chat.js"></script>

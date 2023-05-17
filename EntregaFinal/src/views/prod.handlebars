@@ -1,0 +1,34 @@
+<div class="container">
+    <h1 class="title">CATALOGO</h1>
+    <div class="formulario">
+      <form action="/products" method="get">
+        <input  class="input" type="text" name="query" placeholder="Buscar producto...">
+        <button type="submit">Buscar</button>
+      </form>
+    </div>
+    {{#if message}}
+  <div class="alert alert-warning">{{message}}</div>
+    {{/if}}
+  <div class="gallery">
+    {{#each products}}
+      <div class="product">
+        <h2>{{this.title}}</h2>
+          <img src="{{this.img}}" alt="{{this.title}}">
+        <p>{{this.description}}</p>
+        <p>Category: {{this.category}}</p>
+        <p>Price: {{this.price}}</p>
+        <p>Stock: {{this.stock}}</p>
+        {{!-- <p>Disponibilidad: {{this.status}}</p> --}}
+        <button>Agregar al carrito</button>
+      </div>
+    {{/each}}
+  </div>
+  <div>
+  {{#if prevPage}}
+    <a href="/products?{{#if urlParams.query}}query={{urlParams.query}}&{{/if}}{{#if urlParams.sort}}sort={{urlParams.sort}}&{{/if}}{{#if urlParams.category}}category={{urlParams.category}}&{{/if}}page={{prevPage}}"><button class="button2">Anterior</button></a>
+  {{/if}}
+  {{#if nextPage}}
+    <a href="/products?{{#if urlParams.query}}query={{urlParams.query}}&{{/if}}{{#if urlParams.sort}}sort={{urlParams.sort}}&{{/if}}{{#if urlParams.category}}category={{urlParams.category}}&{{/if}}page={{nextPage}}"><button class="button2">Siguiente</button></a>
+  {{/if}}
+</div>
+</div>
