@@ -1,10 +1,10 @@
 import { Router } from "express";
 import CartManagerMongo from '../Dao/controllers/CartManagerMongo.js';
+import cartModel from "../Dao/models/cart.model.js";
 
 const router = Router()
 const cartManager = new CartManagerMongo();
 
-// MUESTRA TODOS LOS CARRITOS 
 router.get('/', async (req, res) => {
     try {
       const carts = await cartManager.getCarts();
@@ -17,7 +17,6 @@ router.get('/', async (req, res) => {
     }
   });
   
-// MUESTRA 1 CARRITO SEGUN SU ID 
   router.get('/:id', async (req, res) => {
     try {
       const cartId = req.params.id;
@@ -31,7 +30,6 @@ router.get('/', async (req, res) => {
     }
   });
 
-// MUESTRA EN DETALLE EL PRODUCTO EN EL CARRITO
 router.get('/:id/details', async (req, res) => {
     try {
       const cartId = req.params.id;
@@ -43,7 +41,6 @@ router.get('/:id/details', async (req, res) => {
     }
   });
 
-// CREA CARRITO
 router.post('/', async (req, res) => {
     try {
       const cart = await cartManager.addCart();
@@ -56,7 +53,6 @@ router.post('/', async (req, res) => {
     }
   });
 
-// BORRA EL CARRITO
 router.delete('/:id', async (req, res) => {
     try {
       const cartId = req.params.id;
@@ -68,7 +64,7 @@ router.delete('/:id', async (req, res) => {
     }
   });
 
-// VACIA EL CARRITO
+
 router.delete('/:id/empty', async (req, res) => {
     try {
       const cartId = req.params.id;
@@ -82,7 +78,7 @@ router.delete('/:id/empty', async (req, res) => {
     }
   });
 
-// AGREGA UN PRODUCTO
+
 router.post('/:cartId/products/:productId', async (req, res) => {
     try {
       const cartId = req.params.cartId;
@@ -97,7 +93,7 @@ router.post('/:cartId/products/:productId', async (req, res) => {
     }
   });
 
-// ACTUALIZA CANTIDAD // INNECESARIO DADO QUE CON EL PUT DE ABAJO HACEMOS LO MISMO.
+
 router.put('/:cartId/products/:productId', async (req, res) => {
     try {
       const cartId = req.params.cartId;
@@ -112,7 +108,7 @@ router.put('/:cartId/products/:productId', async (req, res) => {
     }
   });
 
-// AGREGA VARIOS PRODUCTOS AL CARRITO
+
 router.put('/:cartId', async (req, res) => {
     const cartId = req.params.cartId;
     const products = req.body;
@@ -129,7 +125,7 @@ router.put('/:cartId', async (req, res) => {
         await cartManager.addProductInCart(cartId, _id, quantity);
       }
   
-      await cart.save(); // Guardar el carrito actualizado en la base de datos
+      await cart.save(); 
   
       res.send({ message: 'Productos cargados exitosamente' });
     } catch (error) {
@@ -143,27 +139,3 @@ router.put('/:cartId', async (req, res) => {
 export default router;
   
 
-// VIEJO TENIAMOS LAS ROUTERS SIN LOS PARAMETROS.
-/* import { Router } from "express";
-import CartManagerMongo from "../Dao/controllers/CartManagerMongo.js";
-
-const router = Router();
-
-const CartManager = new CartManagerMongo();
-
-// muestra el el cart el producto detallado
-router.get('/details/:id', CartManager.getCartDetails)
-router.get('/', CartManager.getCarts);
-router.get('/:id', CartManager.getCartById);
-router.post('/', CartManager.addCart);
-router.delete('/:id', CartManager.deleteCart);
-router.post('/:cartId/product/:productId', CartManager.addProductInCart);
-// router api/carts/delete/id cart/ products
-router.delete("/delete/:id/products", CartManager.emptyCart);
-// actualizar la cantidad 
-router.patch("/carts/:cartId/products/:productId", CartManager.updateProductQuantityInCart);
-
-// falta el put que permita agregar varios productos en el cart.
-
-export default router;
- */
