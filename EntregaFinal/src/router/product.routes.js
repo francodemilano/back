@@ -4,7 +4,7 @@ import ProductManagerMongo from '../Dao/controllers/ProductManagerMongo.js';
 const router = Router();
 const productManager = new ProductManagerMongo();
 
-// MUESTRA PRODUCTOS
+
 router.get('/', async (req, res) => {
   try {
     const products = await productManager.getProducts();
@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-// PRODUCTO POR ID
+
 router.get('/:id', async (req, res) => {
   try {
     const productId = req.params.id;
@@ -28,7 +28,7 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-//AGREGA PRODUCTO
+
 router.post('/', async (req, res) => {
   try {
     const productData = req.body;
@@ -40,7 +40,7 @@ router.post('/', async (req, res) => {
   }
 });
 
-// BORRA PRODUCTO POR ID
+
 router.delete('/:id', async (req, res) => {
   try {
     const productId = req.params.id;
@@ -52,7 +52,6 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
-//ACTUALIZA PRODUCTO POR ID
 router.put('/:id', async (req, res) => {
   try {
     const productId = req.params.id;
