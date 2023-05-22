@@ -1,3 +1,4 @@
+
 const form = document.getElementById("cookieForm");
 
 form.addEventListener('submit', (evt)=>{
