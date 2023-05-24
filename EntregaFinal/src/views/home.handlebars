@@ -1,14 +1,43 @@
 <div class="container">
-    <h1 class="title">TODOS PRODUCTOS</h1>
+<nav>
+  {{#if isAdmin}}
+  <div class="user-dropdown">
+    <button class="user-dropdown-btn">
+      <a href="/admin">PANEL DE CONTROL</a>
+    </button>
+  </div>
+    {{/if}}
+  <ul>
+    <li><a href="/">HOME</a></li>
+    <li><a href="/products">PRODUCTOS</a></li>
+    <li><a href="/cart/646267ba8cc04a3efca60438">CARRITO</a></li>
+  </ul>
+  {{#if message}}
+  {{message}}
+    {{/if}}
+  <div class="user-dropdown">
+    <button class="user-dropdown-btn"> {{user.role}}</button>
+    <div class="user-dropdown-content">
+      <p class="users">User: {{user.name}}</p>
+      <p>Email: {{user.email}}</p>
+      <a href="/profile"><button>Mi perfil</button> </a>
+      <a href="/api/session/logout">
+        <button>Cerrar Sesión</button>
+      </a>
+    </div>
+  </div>
+</nav>
+  <div class="background-image">
+    <img src="">
+  </div>
+   {{!--  <h1 class="title">TODOS PRODUCTOS</h1> --}}
     <div class="formulario">
       <form action="/products" method="get">
         <input  class="input" type="text" name="query" placeholder="Buscar producto...">
         <button type="submit">Buscar</button>
       </form>
     </div>
-    {{#if message}}
-  <div class="alert alert-warning">{{message}}</div>
-    {{/if}}
+
   <div class="gallery">
     {{#each products}}
       <div class="product">
@@ -22,5 +51,3 @@
     {{/each}}
   </div>
 </div>
-
-

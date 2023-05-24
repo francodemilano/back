@@ -1,0 +1,43 @@
+<div class="container">
+    <nav>
+        <button {{!-- onclick="irPanelControl()" --}}>Controladores</button>
+        <button {{!-- onclick="irRendimientos()" --}}>Rendimientos</button>
+        <button onclick="irAgregarProductos()">Agregar Productos</button>
+        <button onclick="volver()">Volver</button>
+        <a href="/api/session/logout">
+        <button>Cerrar Sesión</button>
+        </a>
+    </nav>
+       <h1 class="title">Data base Users</h1>
+    
+    <div class="gallery">
+        <table>
+            <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Email</th>
+                <th>Contraseña</th>
+                <th>Delete</th>
+            </tr>
+            </thead>
+    <tbody>
+        {{#each users}}
+            <tr>
+                <td>{{this.first_name}}</td>
+                <td>{{this.last_name}}</td>
+                <td>{{this.email}}</td>
+                <td>{{this.password}}</td>
+                <td>
+                    <form action="/admin/db-user/{{this._id}}" method="POST">
+                        <button type="submit">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+        {{/each}}
+    </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="/js/admin.js"></script>
