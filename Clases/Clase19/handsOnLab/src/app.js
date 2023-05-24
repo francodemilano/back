@@ -9,7 +9,7 @@ import viewRouter from './routes/views.router.js';
 import sessionRouter from './routes/sessions.router.js';
 
 const DB = 'eshop';  
-const MONGO = 'mongodb+srv://bidabehere:bidabehere@cluster0.a5dcy.mongodb.net/' + DB;
+const MONGO = 'mongodb+srv://biabehere:bidabehere@cluster0.a5dcy.mongodb.net/' + DB;
 const PORT = 8080;
 
 const app = express();
