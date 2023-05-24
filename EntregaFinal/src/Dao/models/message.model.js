@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+/* import mongoose from "mongoose";
 
 const messageModel = mongoose.model(
     'messages',
@@ -8,4 +8,4 @@ const messageModel = mongoose.model(
     })
 );
 
-export default messageModel;
+export default messageModel; */
