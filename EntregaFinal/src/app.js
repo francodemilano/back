@@ -7,16 +7,16 @@ import adminRouter from "./router/admin.routes.js";
 import sessionRouter from "./router/session.routes.js";
 import viewsRouter from "./router/views.routes.js";
 import chatRouter from "./router/chat.routes.js"
-import cartRouter from "./router/carts.routes.js"
+import cartRouter from "./router/cart.routes.js"
 import productRouter from "./router/product.routes.js"
 import cookieParser from "cookie-parser";
 import session from "express-session";
 import MongoStore from "connect-mongo";
-//import messagesModel from "./Dao/models/message.model.js";
+
 
 
 const DB = 'ecommerce';
-const MONGO = 'mongodb+srv://damilanofranco:Fran2023$@cluster0.iyqxzj8.mongodb.net/?retryWrites=true&w=majority' + DB
+const MONGO = 'mongodb+srv://damilanofranco:Fran2023$@cluster0.iyqxzj8.mongodb.net/?retryWrites=true&w=majority' 
 const PORT = process.env.PORT || 8080;
 const app = express();
 const connect = mongoose.connect(MONGO);
@@ -55,11 +55,9 @@ io.on('connection', socket => {
     console.log('socket connected')
     socket.emit('messageLogs', messages)
     socket.on('message', async data => {
-        // Pusheamos un mensaje a un arrays para mostrarlo por handlebars. 
         messages.push(data)  
         io.emit('messageLogs', messages)
-        // Crear un nuevo documento en la base de datos
-       // await messagesModel.create({ user: data.user, message: data.message })
+
       }); 
 
     socket.on('authenticated', data => {
